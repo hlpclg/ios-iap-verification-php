@@ -107,14 +107,6 @@ class AppleInAppPurchaseVerification
     {
         $response        = $this->makeRequest();
         $decodedResponse = $this->decodeResponse($response);
-        if (!isset($decodedResponse->status) || $decodedResponse->status != 0) {
-            $responseResult = 'Invalid receipt. Status code: ' . (!empty($decodedResponse->status) ? $decodedResponse->status : 'N/A');
-        } elseif (!is_object($decodedResponse)) {
-            $responseResult = 'Invalid response data';
-        } else {
-            $responseResult = $response;
-        }
-
-        return $responseResult;
+        return $decodedResponse;
     }
 }
